@@ -1,4 +1,4 @@
-# Getting Started with Grispi Plugin React Starter
+# Getting Started
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), Tailwind CSS, Shadcn, and Craco.
 
