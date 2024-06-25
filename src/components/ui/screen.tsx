@@ -58,7 +58,7 @@ export const ScreenTitle: FC<ScreenTitleProps> = ({
   ...props
 }) => {
   return (
-    <h3 {...props} className={cn("font-medium", className)}>
+    <h3 {...props} className={cn("text-sm font-medium", className)}>
       {children}
     </h3>
   );

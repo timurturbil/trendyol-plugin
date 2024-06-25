@@ -74,6 +74,7 @@ function sendMessage(type, data) {
 export class GrispiClient {
   constructor() {
     this.activeTicketChanged = undefined;
+    this.currentTicketUpdated = undefined;
 
     if (!initializing) {
       throw new Error(
@@ -167,12 +168,13 @@ export class GrispiClient {
         if (frozen) {
           return;
         }
-        // if (e.origin !== origin) {
-        //   const msg = `E3 Origins does not match. Expected '${origin}' but found '${e.origin}'!`;
-        //   console.error(msg);
-        //   reject(new Error(msg));
-        //   return;
-        // }
+
+        if (e.origin !== origin) {
+          const msg = `E3 Origins does not match. Expected '${origin}' but found '${e.origin}'!`;
+          console.error(msg);
+          reject(new Error(msg));
+          return;
+        }
 
         if (!e.data) {
           const msg = `E4 Event data (event.data) is missing.`;
