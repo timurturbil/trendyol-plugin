@@ -23,6 +23,16 @@
 }
 ```
 
+## Testing the Application
+
+To test the application within Grispi, simply run the following command:
+
+```sh
+yarn start
+```
+
+If you want to test outside of Grispi, make sure to comment out the `GrispiClient.instance()` block in the `contexts/grispi-context.tsx` file.
+
 ## GrispiClient Instance Initialization
 
 The `GrispiClient.instance()` initialization code is as follows:
