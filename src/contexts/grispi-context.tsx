@@ -7,7 +7,6 @@ import React, {
 } from "react";
 
 import { grispiAPI } from "@/grispi/client/api";
-import { GrispiClient } from "@/grispi/plugin";
 import { GrispiBundle, Settings, Ticket } from "@/types/grispi.type";
 
 type GrispiContext = {
@@ -18,7 +17,7 @@ type GrispiContext = {
 
 const GrispiContext = createContext<GrispiContext | null>(null);
 
-const instance = GrispiClient.instance();
+const plugin = window.GrispiClient.instance();
 
 export const GrispiProvider: React.FC<{
   children: ReactNode;
@@ -28,7 +27,7 @@ export const GrispiProvider: React.FC<{
   const [settings, setSettings] = useState<Settings | null>(null);
 
   useEffect(() => {
-    instance._init().then(async (bundle: GrispiBundle) => {
+    plugin._init().then(async (bundle: GrispiBundle) => {
       setLoading(true);
 
       grispiAPI.authentication.setTenantId(bundle.context.tenantId);
@@ -43,7 +42,7 @@ export const GrispiProvider: React.FC<{
       setLoading(false);
     });
 
-    instance.currentTicketUpdated = async (ticket: Ticket) => {
+    plugin.currentTicketUpdated = async (ticket: Ticket) => {
       setLoading(true);
 
       try {
