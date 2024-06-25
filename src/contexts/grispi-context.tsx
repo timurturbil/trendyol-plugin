@@ -9,13 +9,13 @@ import React, {
 import { grispiAPI } from "@/grispi/client/api";
 import { GrispiBundle, Settings, Ticket } from "@/types/grispi.type";
 
-type GrispiContext = {
+type GrispiContextType = {
   ticket: Ticket | null;
   settings: Settings | null;
   loading: boolean;
 };
 
-const GrispiContext = createContext<GrispiContext | null>(null);
+const GrispiContext = createContext<GrispiContextType | null>(null);
 
 const plugin = window.GrispiClient.instance();
 
