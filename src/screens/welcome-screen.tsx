@@ -7,10 +7,10 @@ import {
   ScreenHeader,
   ScreenTitle,
 } from "@/components/ui/screen";
-import { useGrispi } from "@/contexts/grispi-context";
+// import { useGrispi } from "@/contexts/grispi-context";
 
 export const WelcomeScreen = observer(() => {
-  const { ticket, loading } = useGrispi();
+//   const { ticket, loading } = useGrispi();
 
   return (
     <Screen>
@@ -18,9 +18,6 @@ export const WelcomeScreen = observer(() => {
         <ScreenTitle>Grispi</ScreenTitle>
       </ScreenHeader>
       <ScreenContent>
-        {loading ? (
-          <LoadingWrapper />
-        ) : (
           <div className="flex flex-col gap-3 p-6">
             <span className="text-center text-xs font-bold uppercase text-primary">
               Welcome to starter
@@ -28,7 +25,7 @@ export const WelcomeScreen = observer(() => {
             <div className="flex flex-col divide-y *:py-2 *:text-xs">
               <div className="flex items-center justify-between">
                 <span>Key</span>
-                <span className="font-bold">{ticket?.key}</span>
+                <span className="font-bold">{"ticket?.key"}</span>
               </div>
               <div className="flex items-center justify-between">
                 <span>Time</span>
@@ -38,7 +35,6 @@ export const WelcomeScreen = observer(() => {
               </div>
             </div>
           </div>
-        )}
       </ScreenContent>
     </Screen>
   );
