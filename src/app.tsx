@@ -1,11 +1,14 @@
 // import { GrispiProvider } from "./contexts/grispi-context";
+import { TrendyolProvider } from "./contexts/trendyol-context";
 import { StoreProvider } from "./contexts/store-context";
 import { WelcomeScreen } from "./screens/welcome-screen";
 
 const App = () => {
   return (
     <StoreProvider>
-        <WelcomeScreen />
+        <TrendyolProvider>
+          <WelcomeScreen />
+        </TrendyolProvider>
     </StoreProvider>
   );
 };
