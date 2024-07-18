@@ -28,8 +28,6 @@ export const WelcomeScreen = observer(() => {
     setOrders(selectedCustomer?.orders);
   };
 
-  console.log({orders});
-  
   return (
     <Screen>
       <ScreenHeader>
@@ -43,7 +41,7 @@ export const WelcomeScreen = observer(() => {
 
           <Select
               showSearch
-              placeholder="Müşteri Ara..."
+              placeholder="Search For Customers..."
               optionFilterProp="label"
               onChange={onChange}
               options={customersForSelect}
@@ -51,7 +49,7 @@ export const WelcomeScreen = observer(() => {
             
             {customer != null ? <div className="flex flex-col divide-y *:py-2 *:text-xs">
               <span className="text-left text-xs font-bold uppercase text-primary">
-                  Müşteri Bilgileri
+                  Customer Information
               </span>
                            <div className="flex items-center justify-between">
                              <span>Customer Full Name</span>
@@ -69,7 +67,7 @@ export const WelcomeScreen = observer(() => {
             
             {(orders != null && order != null) ? <div className="flex flex-col divide-y *:py-2 *:text-xs">
               <span className="text-left text-xs font-bold uppercase text-primary">
-                Müşterinin Son Siparişleri
+                Last Orders of the Customer
               </span>
               {orders.map((ord, index) => {
                 if(index > 5) return;
@@ -78,12 +76,12 @@ export const WelcomeScreen = observer(() => {
                          style={{backgroundColor: ord.orderNumber == order.orderNumber ? "#f0f0f0" : "transparent"}}
                          onClick={() => setOrder(ord)}
                          key={index}>
-                        <span>{ord.orderNumber} ({new Date(ord.orderDate).toLocaleString()})</span>
+                        <span>{"ID: " + ord.orderNumber} | {"Last Modified Date: " + new Date(ord.lastModifiedDate).toLocaleString()}</span>
                         <button
                           className="text-xs text-white bg-primary rounded px-2 py-1"
                           onClick={() => setOrder(ord)}
                         >
-                          Detay
+                          Detail
                         </button>
                     </div>
                 );
@@ -92,7 +90,7 @@ export const WelcomeScreen = observer(() => {
             
             {order != null ? <div className="flex flex-col divide-y *:py-2 *:text-xs">
               <span className="text-left text-xs font-bold uppercase text-primary">
-                Seçilen Sipariş Detayı ({order != null ? order.orderNumber : "null"})
+                Selected Customer Detail ({order != null ? order.orderNumber : "null"})
               </span>
               <div className="flex items-center justify-between">
                     <span>Cargo Tracking Number</span>
@@ -109,6 +107,10 @@ export const WelcomeScreen = observer(() => {
                 <div className="flex items-center justify-between">
                     <span>Order Date</span>
                     <span className="font-bold">{new Date(order.orderDate).toLocaleString()}</span>
+                </div>
+                <div className="flex items-center justify-between">
+                    <span>Last Modified Date</span>
+                    <span className="font-bold">{new Date(order.lastModifiedDate).toLocaleString()}</span>
                 </div>
                 <div className="flex items-center justify-between">
                     <span>Order Status</span>

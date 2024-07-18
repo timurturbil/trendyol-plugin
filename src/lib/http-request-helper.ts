@@ -1,5 +1,5 @@
 export class HttpRequestHelper {
-    proxyUrl: string = ""; //"http://localhost:8080/";
+    proxyUrl: string = "http://localhost:8080/";
     baseUrl: string = this.proxyUrl + "https://stageapi.trendyol.com/stagesapigw";
     username: string = "3xATCK5OkR6p8LBohvse";
     password: string = "QqfFXiUat1x82D4vdSbS";

@@ -34,7 +34,7 @@
    const [customers, setCustomers] = useState<Customer[] | null>(null);
 
    useEffect(() => {
-        trendyolAPI.orders.getCustomers(2738).then((response) => {
+        trendyolAPI.orders.getCustomers(2738, 50).then((response) => {
           const customers = response as Customer[];
           setCustomer(customers[0]);
           setOrders(customers[0].orders);

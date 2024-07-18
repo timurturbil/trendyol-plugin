@@ -36,9 +36,9 @@ export class Orders {
         }
     }
 
-    async getCustomers<Customer>(supplierId: number): Promise<Customer[] | null | undefined> {
+    async getCustomers<Customer>(supplierId: number, size: number): Promise<Customer[] | null | undefined> {
         const response = await this.http.send<OrderResponse>(
-            `suppliers/${supplierId}/orders?size=50`,
+            `suppliers/${supplierId}/orders?size=${size}`,
             {
                 method: "GET",
                 cache: "no-cache"
@@ -47,10 +47,6 @@ export class Orders {
 
         if (response) {
             const orders: Order[] = response.content as Order[];
-            //sort orders orderDate
-            orders.sort((a, b) => {
-                return b.orderDate - a.orderDate;
-            });
             
             const customers: Customer[] = [
                 {
