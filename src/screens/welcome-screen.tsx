@@ -8,9 +8,28 @@ import {
   ScreenTitle,
 } from "@/components/ui/screen";
 import { useTrendyol } from "@/contexts/trendyol-context";
+import { Select } from 'antd';
+import { Customer } from "@/types/trendyol.type";
 
 export const WelcomeScreen = observer(() => {
   const { order, orders, customer, customers, setOrder, setOrders, setCustomer, loading } = useTrendyol();
+  
+  const customersForSelect = customers?.map((cus) => {
+    return {
+      value: cus.customerId,
+      label: cus.customerFirstName + " " + cus.customerLastName + " (" + cus.customerId + ")"
+    }
+  });
+
+  const onChange = (value: number) => {
+    const selectedCustomer = customers?.find((cus) => cus.customerId == value) as Customer;
+    setCustomer(selectedCustomer);
+    setOrder(selectedCustomer?.orders[0]);
+    setOrders(selectedCustomer?.orders);
+  };
+
+  console.log({orders});
+  
   return (
     <Screen>
       <ScreenHeader>
@@ -21,35 +40,19 @@ export const WelcomeScreen = observer(() => {
              <LoadingWrapper />
           ) : (
           <div className="flex flex-col gap-3 p-6">
-            <span className="text-left text-xs font-bold uppercase text-primary">
-              Müşteriler
-            </span>
-            <div className="flex flex-col divide-y *:py-2 *:text-xs">
-              {(customers != null  && customer != null) ? customers.map((cus,index) => {
-                return (
-                    <div className="flex items-center justify-between"
-                         style={{backgroundColor: cus.customerId == customer.customerId ? "#f0f0f0" : "transparent"}}
-                         key={index}
-                         >
-                        <span>{cus.customerFirstName + " " + cus.customerLastName}</span>
-                        <button
-                          className="text-xs text-white bg-primary rounded px-2 py-1"
-                          onClick={() => {
-                            setCustomer(cus);
-                            setOrder(cus.orders[0]);
-                            setOrders(cus.orders);
-                          }}
-                        >
-                          Detay
-                        </button>
-                    </div>
-                );
-              }): <> </>}
-            </div>
-            <span className="text-left text-xs font-bold uppercase text-primary">
-               Müşteri Bilgileri
-            </span>
+
+          <Select
+              showSearch
+              placeholder="Müşteri Ara..."
+              optionFilterProp="label"
+              onChange={onChange}
+              options={customersForSelect}
+            />
+            
             {customer != null ? <div className="flex flex-col divide-y *:py-2 *:text-xs">
+              <span className="text-left text-xs font-bold uppercase text-primary">
+                  Müşteri Bilgileri
+              </span>
                            <div className="flex items-center justify-between">
                              <span>Customer Full Name</span>
                              <span className="font-bold">{customer.customerFirstName + " " + customer.customerLastName}</span>
@@ -61,13 +64,14 @@ export const WelcomeScreen = observer(() => {
                            <div className="flex items-center justify-between">
                              <span>Customer ID</span>
                              <span className="font-bold">{customer.customerId}</span>
-                           </div>
-                         </div>: <></>}
-            <span className="text-left text-xs font-bold uppercase text-primary">
-              Müşterinin Son Siparişleri
-            </span>
-            <div className="flex flex-col divide-y *:py-2 *:text-xs">
-              {(orders != null && order != null) ? orders.map((ord, index) => {
+              </div>
+            </div>: <> </>}
+            
+            {(orders != null && order != null) ? <div className="flex flex-col divide-y *:py-2 *:text-xs">
+              <span className="text-left text-xs font-bold uppercase text-primary">
+                Müşterinin Son Siparişleri
+              </span>
+              {orders.map((ord, index) => {
                 if(index > 5) return;
                 return (
                     <div className="flex items-center justify-between"
@@ -83,14 +87,14 @@ export const WelcomeScreen = observer(() => {
                         </button>
                     </div>
                 );
-              }): <> </>}
-            </div>
-            <span className="text-left text-xs font-bold uppercase text-primary">
-              Seçilen Sipariş Detayı ({order != null ? order.orderNumber : "null"})
-            </span>
-            <div className="flex flex-col divide-y *:py-2 *:text-xs">
-              {order != null ? <>
-                <div className="flex items-center justify-between">
+              })}
+            </div>: <> </>}
+            
+            {order != null ? <div className="flex flex-col divide-y *:py-2 *:text-xs">
+              <span className="text-left text-xs font-bold uppercase text-primary">
+                Seçilen Sipariş Detayı ({order != null ? order.orderNumber : "null"})
+              </span>
+              <div className="flex items-center justify-between">
                     <span>Cargo Tracking Number</span>
                     <span className="font-bold">{order.cargoTrackingNumber}</span>
                 </div>
@@ -120,10 +124,9 @@ export const WelcomeScreen = observer(() => {
                         )
                     })}</span>
                 </div>
-              </>: <> </>}
 
-            {order != null ? <ReactJson collapsed={true} src={order}/> : <span>Seçili bir sipariş bulunmamaktadır.</span>}
-            </div>
+              <ReactJson collapsed={true} src={order}/>
+            </div> : <span>Seçili bir sipariş bulunmamaktadır.</span>}
           </div>
           )}
       </ScreenContent>

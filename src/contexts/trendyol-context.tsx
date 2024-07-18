@@ -37,6 +37,8 @@
         trendyolAPI.orders.getCustomers(2738).then((response) => {
           const customers = response as Customer[];
           setCustomer(customers[0]);
+          setOrders(customers[0].orders);
+          setOrder(customers[0].orders[0]);
           setCustomers(customers);
           setLoading(false);
         });
