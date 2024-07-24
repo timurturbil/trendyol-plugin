@@ -10,9 +10,10 @@ import {
 import { useTrendyol } from "@/contexts/trendyol-context";
 import { Select } from 'antd';
 import { Customer } from "@/types/trendyol.type";
-
+import { InfoCircleOutlined } from '@ant-design/icons';
+import { Popconfirm } from 'antd';
 export const WelcomeScreen = observer(() => {
-  const { order, orders, customer, customers, setOrder, setOrders, setCustomer, loading } = useTrendyol();
+  const { order, orders, customer, customers, setOrder, setOrders, setCustomer, loading, showAllOrders, setShowAllOrders } = useTrendyol();
   
   const customersForSelect = customers?.map((cus) => {
     return {
@@ -26,6 +27,7 @@ export const WelcomeScreen = observer(() => {
     setCustomer(selectedCustomer);
     setOrder(selectedCustomer?.orders[0]);
     setOrders(selectedCustomer?.orders);
+    setShowAllOrders(false);
   };
 
   return (
@@ -68,9 +70,19 @@ export const WelcomeScreen = observer(() => {
             {(orders != null && order != null) ? <div className="flex flex-col divide-y *:py-2 *:text-xs">
               <span className="text-left text-xs font-bold uppercase text-primary">
                 Last Orders of the Customer
+                <Popconfirm
+                  title="Info"
+                  description="Orders up to 3 months are listed in this section."
+                  //onConfirm={confirm}
+                  showCancel={false}
+                  onOpenChange={() => console.log('open change')}
+                >
+                  <InfoCircleOutlined style={{marginLeft: "5px"}}/>
+                </Popconfirm>
+                
               </span>
               {orders.map((ord, index) => {
-                if(index > 5) return;
+                if(showAllOrders == false && index > 5) return;
                 return (
                     <div className="flex items-center justify-between"
                          style={{backgroundColor: ord.orderNumber == order.orderNumber ? "#f0f0f0" : "transparent"}}
@@ -86,11 +98,14 @@ export const WelcomeScreen = observer(() => {
                     </div>
                 );
               })}
+              {orders.length > 5 ? <span className="text-xs text-primary cursor-pointer" onClick={() => setShowAllOrders(!showAllOrders)}>
+                {showAllOrders ? "Show Less" : "Show All"}
+              </span> : <></>}
             </div>: <> </>}
             
             {order != null ? <div className="flex flex-col divide-y *:py-2 *:text-xs">
               <span className="text-left text-xs font-bold uppercase text-primary">
-                Selected Customer Detail ({order != null ? order.orderNumber : "null"})
+                Selected Order's Detail ({order != null ? order.orderNumber : "null"})
               </span>
               <div className="flex items-center justify-between">
                     <span>Cargo Tracking Number</span>

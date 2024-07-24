@@ -18,6 +18,8 @@
    setOrders: (orders: Order[]) => void;
    setCustomer: (customer: Customer) => void;
    loading: boolean;
+   showAllOrders: boolean;
+   setShowAllOrders: (showAllOrders: boolean) => void;
  };
 
  const TrendyolContext = createContext<TrendyolContextType | null>(null);
@@ -32,6 +34,7 @@
    const [orders, setOrders] = useState<Order[] | null>(null);
    const [customer, setCustomer] = useState<Customer | null>(null);
    const [customers, setCustomers] = useState<Customer[] | null>(null);
+   const [showAllOrders, setShowAllOrders] = useState<boolean>(false);
 
    useEffect(() => {
         trendyolAPI.orders.getCustomers(2738, 50).then((response) => {
@@ -55,6 +58,8 @@
          setOrders,
          setCustomer,
          loading,
+         showAllOrders,
+         setShowAllOrders
        }}
      >
        {children}
