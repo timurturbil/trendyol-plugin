@@ -31,22 +31,22 @@ To test the application within Grispi, simply run the following command:
 yarn start
 ```
 
-If you want to test outside of Grispi, make sure to comment out the `GrispiClient.instance()` block in the `contexts/grispi-context.tsx` file.
+If you want to test outside of Grispi, make sure to comment out the `Grispi.instance()` block in the `contexts/grispi-context.tsx` file.
 
-## GrispiClient Instance Initialization
+## Grispi Instance Initialization
 
-The `GrispiClient.instance()` initialization code is as follows:
+The `Grispi.instance()` initialization code is as follows:
 
 ```tsx
 useEffect(() => {
-  GrispiClient.instance()
+  Grispi.instance()
     ._init()
     .then((data: GrispiBundle) => {
       setTicket(data.context.ticket);
       setSettings(data.settings);
       setLoading(false);
 
-      GrispiClient.instance().activeTicketChanged = function (ticket: Ticket) {
+      Grispi.instance().activeTicketChanged = function (ticket: Ticket) {
         setTicket(ticket);
       };
     })

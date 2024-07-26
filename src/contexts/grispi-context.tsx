@@ -17,7 +17,7 @@ type GrispiContextType = {
 
 const GrispiContext = createContext<GrispiContextType | null>(null);
 
-const plugin = window.GrispiClient.instance();
+const plugin = window.Grispi.instance();
 
 export const GrispiProvider: React.FC<{
   children: ReactNode;
