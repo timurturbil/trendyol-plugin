@@ -3,8 +3,8 @@ export class HttpRequestHelper {
     //proxyUrl: string = "http://localhost:8080/";
     baseUrl: string = this.proxyUrl + "https://stageapi.trendyol.com/stagesapigw";
     //baseUrl: string = "https://stageapi.trendyol.com/stagesapigw";
-    username: string = "3xATCK5OkR6p8LBohvse";
-    password: string = "QqfFXiUat1x82D4vdSbS";
+    username: string = "TBQs8BCgqwvJWHe6AqmW";
+    password: string = "KrEGffp2OroT1F5iYNXC";
     headers: Record<string, string> = {
         "Content-Type": "application/json",
         "Authorization": `Basic ${btoa(`${this.username}:${this.password}`)}`
