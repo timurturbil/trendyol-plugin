@@ -1,8 +1,8 @@
 export class HttpRequestHelper {
-    //proxyUrl: string = "https://api.grispi.com/trendyol?url=";
+    proxyUrl: string = "https://api.grispi.com/trendyol?url=";
     //proxyUrl: string = "http://localhost:8080/";
-    //baseUrl: string = this.proxyUrl + "https://stageapi.trendyol.com/stagesapigw";
-    baseUrl: string = "https://api.trendyol.com/sapigw";
+    baseUrl: string = this.proxyUrl + "https://api.trendyol.com/sapigw";
+    //baseUrl: string = "https://api.trendyol.com/sapigw";
     username: string = "A8ahxcWDsmoay2OJJtrN";
     password: string = "PjqJAsoEPYRJ0g5hh9rs";
     headers: Record<string, string> = {
@@ -23,3 +23,5 @@ export class HttpRequestHelper {
         return null;
     }
 }
+
+//https://stageapi.trendyol.com/stagesapigw
