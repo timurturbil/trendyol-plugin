@@ -37,7 +37,7 @@
    const [showAllOrders, setShowAllOrders] = useState<boolean>(false);
 
    useEffect(() => {
-        trendyolAPI.orders.getCustomers(2738, 50).then((response) => {
+        trendyolAPI.orders.getCustomers(997502, 50).then((response) => {
           const customers = response as Customer[];
           setCustomer(customers[0]);
           setOrders(customers[0].orders);
