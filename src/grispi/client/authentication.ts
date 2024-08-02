@@ -13,6 +13,10 @@ export class Authentication {
     this.headers["Authorization"] = `Bearer ${token}`;
   }
 
+  setTrendyolToken(token: string) {
+    this.headers["Trendyol-Authorization"] = `Basic ${token}`;
+  }
+
   setHeaders(headers: Record<string, string>) {
     this.headers = { ...this.headers, ...headers };
   }

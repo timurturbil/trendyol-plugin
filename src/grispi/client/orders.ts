@@ -1,10 +1,10 @@
-import { orders } from "@/lib/constants";
-import { HttpRequestHelper } from "../lib/http-request-helper";
-import { Customer, Order, OrderResponse } from "@/types/trendyol.type";
+import { orders as constantOrders } from "@/lib/constants";
+import { Order, OrderResponse } from "@/types/trendyol.type";
+import { HttpHandler } from "./http-handler";
 
 export class Orders {
     constructor(
-        private http: HttpRequestHelper
+        private http: HttpHandler
     ) {}
 
     async getOrder<Order>(supplierId: number, orderNumber: number): Promise<Order | null | undefined> {
@@ -23,31 +23,25 @@ export class Orders {
     }
 
     async getOrders<Order>(supplierId: number, size: number): Promise<Order[] | null | undefined> {
-        const response = await this.http.send<OrderResponse>(
-            `suppliers/${supplierId}/orders?size=${size}`,
-            {
-                method: "GET",
-                cache: "no-cache"
-            }
-        );
+        // const response = await this.http.send<OrderResponse>(
+        //     `suppliers/${supplierId}/orders?size=${size}`,
+        //     {
+        //         method: "GET",
+        //         cache: "no-cache"
+        //     }
+        // );
 
-        if (response) {
-            const orders: Order[] = response.content as Order[];
-            return orders
-        }
+        // if (response) {
+        //     const orders: Order[] = response.content as Order[];
+        //     return orders
+        // }
+        return constantOrders as Order[];
     }
 
     async getCustomers<Customer>(supplierId: number, size: number): Promise<Customer[] | null | undefined> {
-        //const response = await this.http.send<OrderResponse>(
-        //    `suppliers/${supplierId}/orders?size=${size}`,
-        //    {
-        //        method: "GET",
-        //        cache: "no-cache"
-        //    }
-        //);
+        const orders = await this.getOrders<Order>(supplierId, size);
 
-        //if (response) {
-            //const orders: Order[] = response.content as Order[];
+        if (orders) {
             const customers: Customer[] = [
                 {
                     customerFirstName: orders[0].customerFirstName,
@@ -74,6 +68,6 @@ export class Orders {
             }
 
             return customers;
-        //}
+        }
     }
 }

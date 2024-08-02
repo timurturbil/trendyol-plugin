@@ -13,7 +13,7 @@ export const baseUrl: string = proxyUrl + "https://api.trendyol.com/sapigw";
 //trendyol Authorization
 //prod: "Basic QThhaHhjV0RzbW9heTJPSkp0ck46UGpxSkFzb0VQWVJKMGc1aGg5cnM="
 //stage: "Basic VEJRczhCQ2dxd3ZKV0hlNkFxbVc6S3JFR2ZmcDJPcm9UMUY1aVlOWEM="
-export const trendyolAuthorization: string = "Basic VEJRczhCQ2dxd3ZKV0hlNkFxbVc6S3JFR2ZmcDJPcm9UMUY1aVlOWEM=";
+export const trendyolAuthorization: string = "VEJRczhCQ2dxd3ZKV0hlNkFxbVc6S3JFR2ZmcDJPcm9UMUY1aVlOWEM=";
 
 export const contentType: string = "application/json";
 export const grispiAuthorization: string = "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkZWRlbGVyIiwic3ViIjoiYWJvbmVAZG9ydWtkZXN0YW4uY29tIiwieGlkIjoxLCJkZXYiOmZhbHNlLCJyb2xlcyI6WyJST0xFX0FETUlOIl0sImlzcyI6ImdyaXNwaS1hcGk6MjA0MzY4MTMzMiIsImV4cCI6MTcyMjUyODA0OSwiaWF0IjoxNzIyNTI0NDQ5LCJqdGkiOiI1MDYxYjc2Yy0yZGE3LTQyNjYtOWMyOS00MWEzYjZlYzJkZWQifQ.VVwRhimZ4ZLbSZjk758y587qnJzIJEBt8-9dIVxXP74";

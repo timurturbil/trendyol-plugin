@@ -7,13 +7,13 @@ import {
   ScreenHeader,
   ScreenTitle,
 } from "@/components/ui/screen";
-import { useTrendyol } from "@/contexts/trendyol-context";
 import { Select } from 'antd';
 import { Customer } from "@/types/trendyol.type";
 import { InfoCircleOutlined } from '@ant-design/icons';
 import { Popconfirm } from 'antd';
+import { useGrispi } from "@/contexts/grispi-context";
 export const WelcomeScreen = observer(() => {
-  const { order, orders, customer, customers, setOrder, setOrders, setCustomer, loading, showAllOrders, setShowAllOrders } = useTrendyol();
+  const { order, orders, customer, customers, setOrder, setOrders, setCustomer, loading, showAllOrders, setShowAllOrders } = useGrispi();
   
   const customersForSelect = customers?.map((cus) => {
     return {
