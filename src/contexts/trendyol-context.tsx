@@ -8,6 +8,7 @@
 
  import { trendyolAPI } from "@/lib/api";
  import { Customer, Order } from "@/types/trendyol.type";
+import { responseItemSize, supplierId } from "@/lib/constants";
 
  type TrendyolContextType = {
    order: Order | null;
@@ -36,8 +37,8 @@
    const [customers, setCustomers] = useState<Customer[] | null>(null);
    const [showAllOrders, setShowAllOrders] = useState<boolean>(false);
 
-   useEffect(() => {
-        trendyolAPI.orders.getCustomers(997502, 50).then((response) => {
+   useEffect(() => {  
+        trendyolAPI.orders.getCustomers(supplierId, responseItemSize).then((response) => {
           const customers = response as Customer[];
           setCustomer(customers[0]);
           setOrders(customers[0].orders);
