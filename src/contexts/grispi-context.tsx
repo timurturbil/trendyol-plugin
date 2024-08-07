@@ -28,7 +28,7 @@ type GrispiContextType = {
 
 const GrispiContext = createContext<GrispiContextType | null>(null);
 
-const plugin = window.Grispi.instance();
+//const plugin = window.Grispi.instance();
 
 export const GrispiProvider: React.FC<{
   children: ReactNode;
@@ -44,18 +44,19 @@ export const GrispiProvider: React.FC<{
 
   useEffect(() => {
     // plugin._init().then(async (bundle: GrispiBundle) => {
-    //   setLoading(true);
+    //   console.log({bundle})
+      // setLoading(true);
 
-    //   grispiAPI.authentication.setTenantId(bundle.context.tenantId);
-    //   grispiAPI.authentication.setToken(bundle.context.token);
+      // grispiAPI.authentication.setTenantId(bundle.context.tenantId);
+      // grispiAPI.authentication.setToken(bundle.context.token);
 
-    //   const ticket = await grispiAPI.tickets.getTicket(
-    //     bundle.context.ticketKey
-    //   );
+      // const ticket = await grispiAPI.tickets.getTicket(
+      //   bundle.context.ticketKey
+      // );
 
-    //   setTicket(ticket);
-    //   setSettings(bundle.settings);
-    //   setLoading(false);
+      // setTicket(ticket);
+      // setSettings(bundle.settings);
+      // setLoading(false);
     // });
 
     // plugin.currentTicketUpdated = async (ticket: Ticket) => {
