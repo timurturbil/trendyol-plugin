@@ -3,7 +3,8 @@ import { Order } from "@/types/trendyol.type";
 //URL
 //preprod: "https://api.grispi.net/trendyol?url=";
 //prod: "https://api.grispi.com/trendyol?url=";
-export const proxyUrl: string = "https://api.grispi.net/trendyol?url=";
+//local: "http://localhost:8080/trendyol?url=";
+export const proxyUrl: string = "http://localhost:8080/trendyol?url=";
 
 //trendyol base url
 //prod: "https://api.trendyol.com/sapigw"
@@ -18,7 +19,7 @@ export const baseUrl: string = proxyUrl + "https://stageapi.trendyol.com/stagesa
 export const trendyolAuthorization: string = "VEJRczhCQ2dxd3ZKV0hlNkFxbVc6S3JFR2ZmcDJPcm9UMUY1aVlOWEM=";
 
 export const contentType: string = "application/json";
-export const grispiAuthorization: string = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkZWRlbGVyIiwic3ViIjoia2FtZXJAZ3Jpc3BpLmNvbSIsInhpZCI6NiwiZGV2Ijp0cnVlLCJyb2xlcyI6WyJST0xFX0FETUlOIl0sImlzcyI6ImdyaXNwaS1hcGk6MTM4OTg3NDg0OSIsImV4cCI6MTcyMzA0Njk4MSwiaWF0IjoxNzIzMDQzMzgxLCJqdGkiOiJjMTc3MDViYy1jYTM0LTQwODgtYmYyMi0xZDI1NmU1M2ExZGUifQ.IuJQHuZHW6jM21XJFBeqSn6GF4dAkWLWRxXq3WRqZ0U";
+export const grispiAuthorization: string = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkZWRlbGVyIiwic3ViIjoia2FtZXJAZ3Jpc3BpLmNvbSIsInhpZCI6NiwiZGV2Ijp0cnVlLCJyb2xlcyI6WyJST0xFX0FETUlOIl0sImlzcyI6ImdyaXNwaS1hcGk6MTM4OTg3NDg0OSIsImV4cCI6MTcyMzEwODI4MCwiaWF0IjoxNzIzMTA0NjgwLCJqdGkiOiI0YWI1ODI2Mi0zYTdlLTRkMjItOTEwMC0wZjkwNDJmMjBjMmYifQ.gHKHriDgjr-BXEdYA2Psqx-Iu2daLaw0v7S9HMvdFzg";
 export const tenantId: string = "dedeler";
 
 //supplier ids

@@ -24,11 +24,13 @@ type GrispiContextType = {
   setCustomer: (customer: Customer) => void;
   showAllOrders: boolean;
   setShowAllOrders: (showAllOrders: boolean) => void;
+  showAllDetails: boolean;
+  setShowAllDetails: (showAllDetails: boolean) => void;
 };
 
 const GrispiContext = createContext<GrispiContextType | null>(null);
 
-//const plugin = window.Grispi.instance();
+const plugin = window.Grispi.instance();
 
 export const GrispiProvider: React.FC<{
   children: ReactNode;
@@ -41,23 +43,30 @@ export const GrispiProvider: React.FC<{
   const [customer, setCustomer] = useState<Customer | null>(null);
   const [customers, setCustomers] = useState<Customer[] | null>(null);
   const [showAllOrders, setShowAllOrders] = useState<boolean>(false);
-
+  const [showAllDetails, setShowAllDetails] = useState<boolean>(false);
   useEffect(() => {
-    // plugin._init().then(async (bundle: GrispiBundle) => {
-    //   console.log({bundle})
-      // setLoading(true);
+    plugin.init().then(async (bundle: GrispiBundle) => {
+      setLoading(true);
 
-      // grispiAPI.authentication.setTenantId(bundle.context.tenantId);
-      // grispiAPI.authentication.setToken(bundle.context.token);
-
+      grispiAPI.authentication.setTenantId(bundle.context.tenantId);
+      grispiAPI.authentication.setToken(bundle.context.token);
+      grispiAPI.authentication.setTrendyolToken(trendyolAuthorization);
+      grispiAPI.orders.getCustomers(supplierId, responseItemSize).then((response) => {
+        const customers = response as Customer[];
+        setCustomer(customers[0]);
+        setOrders(customers[0].orders);
+        setOrder(customers[0].orders[0]);
+        setCustomers(customers);
+        
+      });
       // const ticket = await grispiAPI.tickets.getTicket(
       //   bundle.context.ticketKey
       // );
-
       // setTicket(ticket);
-      // setSettings(bundle.settings);
-      // setLoading(false);
-    // });
+      setLoading(false);
+    }).catch((err: any) => {
+      console.log("grispi-context", "init", "Error when initializing plugin", err);
+    });
 
     // plugin.currentTicketUpdated = async (ticket: Ticket) => {
     //   setLoading(true);
@@ -76,20 +85,6 @@ export const GrispiProvider: React.FC<{
 
     //   setLoading(false);
     // };
-
-    grispiAPI.authentication.setTenantId(tenantId);
-    grispiAPI.authentication.setToken(grispiAuthorization);
-    grispiAPI.authentication.setTrendyolToken(trendyolAuthorization);
-    setLoading(true);
-    grispiAPI.orders.getCustomers(supplierId, responseItemSize).then((response) => {
-      const customers = response as Customer[];
-      setCustomer(customers[0]);
-      setOrders(customers[0].orders);
-      setOrder(customers[0].orders[0]);
-      setCustomers(customers);
-      setLoading(false);
-    });
-
   }, []);
 
   return (
@@ -106,7 +101,9 @@ export const GrispiProvider: React.FC<{
         setOrders,
         setCustomer,
         showAllOrders,
-        setShowAllOrders
+        setShowAllOrders,
+        showAllDetails,
+        setShowAllDetails,
       }}
     >
       {children}
