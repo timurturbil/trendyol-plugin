@@ -12,22 +12,18 @@ import { Customer } from "@/types/trendyol.type";
 import { InfoCircleOutlined } from '@ant-design/icons';
 import { Popconfirm } from 'antd';
 import { useGrispi } from "@/contexts/grispi-context";
-export const WelcomeScreen = observer(() => {
-  const { 
+import { useStore } from "@/contexts/store-context";
+export const HomePage = observer(() => {
+  const { loading } = useGrispi();
+  const tStore = useStore().trendyol;
+  const {     
     order, 
     orders, 
     customer, 
-    customers, 
-    setOrder, 
-    setOrders, 
-    setCustomer, 
-    loading, 
+    customers,  
     showAllOrders, 
-    setShowAllOrders,
-    showAllDetails,
-    setShowAllDetails
-  } = useGrispi();
-  
+    showAllDetails
+  } = tStore;
   const customersForSelect = customers?.map((cus) => {
     return {
       value: cus.customerId,
@@ -37,10 +33,11 @@ export const WelcomeScreen = observer(() => {
 
   const onChange = (value: number) => {
     const selectedCustomer = customers?.find((cus) => cus.customerId == value) as Customer;
-    setCustomer(selectedCustomer);
-    setOrder(selectedCustomer?.orders[0]);
-    setOrders(selectedCustomer?.orders);
-    setShowAllOrders(false);
+    tStore.updateCustomer(selectedCustomer);
+    tStore.updateOrder(selectedCustomer?.orders[0]);
+    tStore.updateOrders(selectedCustomer?.orders);
+    tStore.updateShowAllOrders(false);
+    tStore.updateShowAllDetails(false);
   };
 
   return (
@@ -100,19 +97,19 @@ export const WelcomeScreen = observer(() => {
                 return (
                     <div className="flex items-center justify-between"
                          style={{backgroundColor: ord.orderNumber == order.orderNumber ? "#f0f0f0" : "transparent"}}
-                         onClick={() => setOrder(ord)}
+                         onClick={() => tStore.updateOrder(ord)}
                          key={index}>
                         <span>{ord.lines[0].productName}</span> 
                         <button
                           className="text-xs text-white bg-primary rounded px-2 py-1"
-                          onClick={() => setOrder(ord)}
+                          onClick={() => tStore.updateOrder(ord)}
                         >
                           Detail
                         </button>
                     </div>
                 );
               })}
-              {orders.length > 3 ? <span className="text-xs text-primary cursor-pointer" onClick={() => setShowAllOrders(!showAllOrders)}>
+              {orders.length > 3 ? <span className="text-xs text-primary cursor-pointer" onClick={() => tStore.updateShowAllOrders(!showAllOrders)}>
                 {showAllOrders ? "Show Less" : "Show All"}
               </span> : <></>}
             </div>: <> </>}
@@ -164,7 +161,7 @@ export const WelcomeScreen = observer(() => {
                    </div>
                   </> : <></>
                 }
-                <span className="text-xs text-primary cursor-pointer" onClick={() => setShowAllDetails(!showAllDetails)}>
+                <span className="text-xs text-primary cursor-pointer" onClick={() => tStore.updateShowAllDetails(!showAllDetails)}>
                   {showAllDetails ? "Show Less" : "Show All"}
                 </span>
 
