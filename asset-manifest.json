@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/trendyol-plugin/static/css/main.b803f250.css",
-    "main.js": "/trendyol-plugin/static/js/main.d0e1d5e0.js",
+    "main.css": "/trendyol-plugin/static/css/main.43ffef68.css",
+    "main.js": "/trendyol-plugin/static/js/main.f74a4f00.js",
     "index.html": "/trendyol-plugin/index.html",
-    "main.b803f250.css.map": "/trendyol-plugin/static/css/main.b803f250.css.map",
-    "main.d0e1d5e0.js.map": "/trendyol-plugin/static/js/main.d0e1d5e0.js.map"
+    "main.43ffef68.css.map": "/trendyol-plugin/static/css/main.43ffef68.css.map",
+    "main.f74a4f00.js.map": "/trendyol-plugin/static/js/main.f74a4f00.js.map"
   },
   "entrypoints": [
-    "static/css/main.b803f250.css",
-    "static/js/main.d0e1d5e0.js"
+    "static/css/main.43ffef68.css",
+    "static/js/main.f74a4f00.js"
   ]
 }
