@@ -14,10 +14,14 @@ import {
 import { useGrispi } from "@/contexts/grispi-context";
 import { useStore } from "@/contexts/store-context";
 import { Customer } from "@/types/trendyol.type";
+import { Button } from "@/components/ui/button";
 
 export const HomePage = observer(() => {
   const { loading } = useGrispi();
   const tStore = useStore().trendyol;
+  const isLocalhost = () => {
+    return window.location.hostname === "localhost";
+  };
   const { order, orders, customer, customers, showAllOrders, showAllDetails } =
     tStore;
 
@@ -59,6 +63,8 @@ export const HomePage = observer(() => {
             {getOrderDetails()}
           </div>
         )}
+
+        {logoutButton()}
       </ScreenContent>
     </Screen>
   );
@@ -240,13 +246,28 @@ export const HomePage = observer(() => {
           className="cursor-pointer text-xs text-primary"
           onClick={() => tStore.updateShowAllDetails(!showAllDetails)}
         >
-          {showAllDetails ? "Show Less" : "Show All"}
+          {showAllDetails ? "Show Less" : "Show More"}
         </span>
 
-        <ReactJson collapsed={true} src={order} />
+        {isLocalhost() ? <ReactJson collapsed={true} src={order} /> : <></>}
       </div>
     ) : (
       <span>Seçili bir sipariş bulunmamaktadır.</span>
+    );
+  }
+
+  function logoutButton(){
+    return (
+      <Button
+        className="rounded bg-primary px-2 py-1 text-xs text-white"
+        style={{width: "-webkit-fill-available", margin: "1.5rem"}}
+        onClick={() => {
+          localStorage.removeItem("trendyolAuthorizationToken");
+          window.location.reload();
+        }}
+      >
+        Logout
+      </Button>
     );
   }
 });
