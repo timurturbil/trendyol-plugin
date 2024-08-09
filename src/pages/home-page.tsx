@@ -5,6 +5,7 @@ import { observer } from "mobx-react-lite";
 import ReactJson from "react-json-view";
 
 import { LoadingWrapper } from "@/components/loading-wrapper";
+import { Button } from "@/components/ui/button";
 import {
   Screen,
   ScreenContent,
@@ -14,7 +15,6 @@ import {
 import { useGrispi } from "@/contexts/grispi-context";
 import { useStore } from "@/contexts/store-context";
 import { Customer } from "@/types/trendyol.type";
-import { Button } from "@/components/ui/button";
 
 export const HomePage = observer(() => {
   const { loading } = useGrispi();
@@ -47,21 +47,27 @@ export const HomePage = observer(() => {
         {loading ? (
           <LoadingWrapper />
         ) : (
-          <div className="flex flex-col gap-3 p-6">
-            <Select
-              showSearch
-              placeholder="Search For Customers..."
-              optionFilterProp="label"
-              onChange={onChangeSelect}
-              options={customersForSelect}
-            />
+          <>
+            {customer ? (
+              <div className="flex flex-col gap-3 p-6">
+                <Select
+                  showSearch
+                  placeholder="Search For Customers..."
+                  optionFilterProp="label"
+                  onChange={onChangeSelect}
+                  options={customersForSelect}
+                />
 
-            {getCustomerInformation()}
+                {getCustomerInformation()}
 
-            {getOrders()}
+                {getOrders()}
 
-            {getOrderDetails()}
-          </div>
+                {getOrderDetails()}
+              </div>
+            ) : (
+              <span className="flex flex-col gap-3 p-6">Böyle bir müşteri bulunamamıştır.</span>
+            )}
+          </>
         )}
 
         {logoutButton()}
@@ -251,16 +257,14 @@ export const HomePage = observer(() => {
 
         {isLocalhost() ? <ReactJson collapsed={true} src={order} /> : <></>}
       </div>
-    ) : (
-      <span>Seçili bir sipariş bulunmamaktadır.</span>
-    );
+    ) : <></>
   }
 
-  function logoutButton(){
+  function logoutButton() {
     return (
       <Button
         className="rounded bg-primary px-2 py-1 text-xs text-white"
-        style={{width: "-webkit-fill-available", margin: "1.5rem"}}
+        style={{ width: "-webkit-fill-available", margin: "1.5rem" }}
         onClick={() => {
           localStorage.removeItem("trendyolAuthorizationToken");
           window.location.reload();

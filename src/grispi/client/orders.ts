@@ -22,19 +22,18 @@ export class Orders {
     }
 
     async getOrders<Order>(supplierId: number, size: number): Promise<Order[] | null | undefined> {
-        // const response = await this.http.send<OrderResponse>(
-        //     `suppliers/${supplierId}/orders?size=${size}`,
-        //     {
-        //         method: "GET",
-        //         cache: "no-cache"
-        //     }
-        // );
+        const response = await this.http.send<OrderResponse>(
+            `suppliers/${supplierId}/orders?size=${size}`,
+            {
+                method: "GET",
+                cache: "no-cache"
+            }
+        );
 
-        // if (response) {
-        //     const orders: Order[] = response.content as Order[];
-        //     return orders
-        // }
-        return constantOrders as Order[];
+        if (response) {
+            const orders: Order[] = response.content as Order[];
+            return orders
+        }
     }
 
     async getCustomers<Customer>(supplierId: number, size: number): Promise<Customer[] | null | undefined> {

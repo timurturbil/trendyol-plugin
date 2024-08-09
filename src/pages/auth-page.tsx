@@ -17,7 +17,7 @@ export const AuthPage = observer(() => {
   const onFinish: FormProps<FieldType>["onFinish"] = (values) => {
     const { token } = values;
     localStorage.setItem("trendyolAuthorizationToken", token!);
-    window.location.reload();
+        window.location.reload();
   };
 
   const onFinishFailed: FormProps<FieldType>["onFinishFailed"] = (
@@ -56,7 +56,7 @@ export const AuthPage = observer(() => {
           ]}
           tooltip={{
             title:
-              "You can find your token in your trendyol panel. Click on your name in the top right corner and then click on the Account Information tab. You will see another set of tabs, click on the Integration Information tab. And now you will see four different texts in textfields. You should get the text named Token.",
+              "You can find your token in your Trendyol panel. Click on your name in the top right corner and then click on the Account Information tab. You will see another set of tabs, click on the Integration Information tab. And now you will see four different texts in textfields. You should get the text named Token.",
             icon: <InfoCircleOutlined />,
           }}
         >
@@ -64,7 +64,7 @@ export const AuthPage = observer(() => {
         </Form.Item>
 
         <Form.Item>
-          <Button block type="primary" htmlType="submit">
+          <Button block type="primary" htmlType="submit" className="rounded bg-primary px-2 py-1 text-xs text-white">
             Submit
           </Button>
         </Form.Item>

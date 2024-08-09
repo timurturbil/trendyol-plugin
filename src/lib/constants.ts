@@ -16,11 +16,11 @@ export const baseUrl: string = proxyUrl + "https://stageapi.trendyol.com/stagesa
 //trendyol Authorization
 //prod: "Basic QThhaHhjV0RzbW9heTJPSkp0ck46UGpxSkFzb0VQWVJKMGc1aGg5cnM="
 //stage: "Basic VEJRczhCQ2dxd3ZKV0hlNkFxbVc6S3JFR2ZmcDJPcm9UMUY1aVlOWEM="
-export const trendyolAuthorization: string = "VEJRczhCQ2dxd3ZKV0hlNkFxbVc6S3JFR2ZmcDJPcm9UMUY1aVlOWEM=";
+//export const trendyolAuthorization: string = "VEJRczhCQ2dxd3ZKV0hlNkFxbVc6S3JFR2ZmcDJPcm9UMUY1aVlOWEM=";
 
 export const contentType: string = "application/json";
-export const grispiAuthorization: string = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkZWRlbGVyIiwic3ViIjoia2FtZXJAZ3Jpc3BpLmNvbSIsInhpZCI6NiwiZGV2Ijp0cnVlLCJyb2xlcyI6WyJST0xFX0FETUlOIl0sImlzcyI6ImdyaXNwaS1hcGk6MTM4OTg3NDg0OSIsImV4cCI6MTcyMzEwODI4MCwiaWF0IjoxNzIzMTA0NjgwLCJqdGkiOiI0YWI1ODI2Mi0zYTdlLTRkMjItOTEwMC0wZjkwNDJmMjBjMmYifQ.gHKHriDgjr-BXEdYA2Psqx-Iu2daLaw0v7S9HMvdFzg";
-export const tenantId: string = "dedeler";
+//export const grispiAuthorization: string = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkZWRlbGVyIiwic3ViIjoia2FtZXJAZ3Jpc3BpLmNvbSIsInhpZCI6NiwiZGV2Ijp0cnVlLCJyb2xlcyI6WyJST0xFX0FETUlOIl0sImlzcyI6ImdyaXNwaS1hcGk6MTM4OTg3NDg0OSIsImV4cCI6MTcyMzEwODI4MCwiaWF0IjoxNzIzMTA0NjgwLCJqdGkiOiI0YWI1ODI2Mi0zYTdlLTRkMjItOTEwMC0wZjkwNDJmMjBjMmYifQ.gHKHriDgjr-BXEdYA2Psqx-Iu2daLaw0v7S9HMvdFzg";
+//export const tenantId: string = "dedeler";
 
 //supplier ids
 //prod: 997502
