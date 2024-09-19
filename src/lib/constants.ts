@@ -4,7 +4,7 @@ import { Order } from "@/types/trendyol.type";
 //preprod: "https://api.grispi.net/trendyol?url=";
 //prod: "https://api.grispi.com/trendyol?url=";
 //local: "http://localhost:8080/trendyol?url=";
-export const proxyUrl: string = "https://api.grispi.net/trendyol?url=";
+export const proxyUrl: string = "https://api.grispi.com/trendyol?url=";
 
 //trendyol base url
 //prod: "https://api.trendyol.com/sapigw"
